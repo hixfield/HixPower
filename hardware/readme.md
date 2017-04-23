@@ -54,7 +54,7 @@
 ## overview
 ![all parts](images/allparts.jpg)
 
-#Case preparation
+# Case preparation
 [![PCB top view](images/casepreparation.jpg)](movies/casepreparation.mp4)
 
 

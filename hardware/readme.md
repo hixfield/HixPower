@@ -54,6 +54,48 @@
 ## overview
 ![all parts](images/allparts.jpg)
 
+# Assembly instructions
+## soldering of the PCB
+### Step 0: BC547 transistors
+![assembling step 1](images/assembly_step_0.jpg)
+### Step 1: 10K resistors
+![assembling step 1](images/assembly_step_1.jpg)
+### Step 2: 4.7K resistors
+![assembling step 1](images/assembly_step_2.jpg)
+### Step 3: 330 resistors
+![assembling step 1](images/assembly_step_3.jpg)
+### Step 4: 2.2K resistors
+![assembling step 1](images/assembly_step_4.jpg)
+### Step 5: 100nF capacitors
+![assembling step 1](images/assembly_step_5.jpg)
+### Step 6: 47uF tantalum capacitors
+![assembling step 1](images/assembly_step_6.jpg)
+### Step 7: LM3940 voltage controller
+![assembling step 1](images/assembly_step_7.jpg)
+### Step 8: LED
+![assembling step 1](images/assembly_step_8.jpg)
+### Step 9: Diode
+![assembling step 1](images/assembly_step_9.jpg)
+### Step 10: ESP12E
+![assembling step 1](images/assembly_step_10.jpg)
+### Step 11: Push buttons
+![assembling step 1](images/assembly_step_11.jpg)
+### Step 12: 680uF capacitor 
+![assembling step 1](images/assembly_step_12.jpg)
+### Step 13: connectors
+![assembling step 1](images/assembly_step_13.jpg)
+### Step 14: buzzer
+![assembling step 1](images/assembly_step_14.jpg)
+### Step 15: relay
+![assembling step 1](images/assembly_step_15.jpg)
+### Step 16: power supply
+![assembling step 1](images/assembly_step_16.jpg)
+### Step 17: FTDI connector
+![assembling step 1](images/assembly_step_17.jpg)
+### Step 18: Fuse
+![assembling step 1](images/assembly_step_18.jpg)
+### Step 19: Varistor
+![assembling step 1](images/assembly_step_19.jpg)
 # Case preparation
 [![PCB top view](images/casepreparation.jpg)](movies/casepreparation.mp4)
 

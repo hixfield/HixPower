@@ -96,6 +96,11 @@
 ![assembling step 1](images/assembly_step_18.jpg)
 ### Step 19: Varistor
 ![assembling step 1](images/assembly_step_19.jpg)
+## Assemble main wires
+## neutral (blue) and live (brown) mains connection wires
+![assembling step 1](images/assembly_step_20.jpg)
+## earthing wire (yellow/green)
+![assembling step 1](images/assembly_step_21.jpg)
 # Case preparation
 [![PCB top view](images/casepreparation.jpg)](movies/casepreparation.mp4)
 

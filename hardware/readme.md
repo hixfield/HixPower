@@ -38,9 +38,9 @@
 | 1          | 1             | Switch with led                          |                          | Switch with led                                                       | [picture](images/pushbutton.jpg)       | 
 | 2          | 2             | XH3P female no pins                      |                          | XH3P female no pins                                                   | [picture](images/xh3pfemalesolder.jpg) | 
 | 2          | 2             | XH3P wire 10cm [pin -> solder], black    |                          | XH3P wire 10cm [pin -> solder], black                                 | [picture](images/xh3pfemalesolder.jpg) | 
-| 2          | 2             | XH3P wire 10cm [pin -> solder], red      |                          | XH3P wire 10cm [pin -> solder], red                                   | [picture](images/xh3pfemalesolder.jpg) | 
+| 1          | 1             | XH3P wire 10cm [pin -> solder], red      |                          | XH3P wire 10cm [pin -> solder], red                                   | [picture](images/xh3pfemalesolder.jpg) | 
 | 1          | 1             | XH3P wire 10cm [pin -> solder], yellow   |                          | XH3P wire 10cm [pin -> solder], yellow                                | [picture](images/xh3pfemalesolder.jpg) | 
-| 1          | 1             | XH3P wire 10cm [pin -> solder], white    |                          | XH3P wire 10cm [pin -> solder], yellow                                | [picture](images/xh3pfemalesolder.jpg) | 
+| 2          | 2             | XH3P wire 10cm [pin -> solder], white    |                          | XH3P wire 10cm [pin -> solder], white                                 | [picture](images/xh3pfemalesolder.jpg) | 
 | 1          | 1             | Case                                     |                          | Case BOPLA 43432501, predrilled                                       | [picture](images/case.jpg)             | 
 | 1          | 1             | PCB                                      |                          | Custom PCB                                                            | [picture](images/pcb.jpg)              | 
 | 2          | 2             | Cable lug round M3                       |                          | Cable lug round M3                                                    | [picture](images/cablelugroundm3.jpg)  | 
@@ -101,7 +101,7 @@
 ![assembling step 1](images/assembly_step_20.jpg)
 ### earthing wire (yellow/green)
 ![assembling step 1](images/assembly_step_21.jpg)
-## Connect push button
+## Assemble push button
 ### prepare wires
 ![assembling step 1](images/assembly_step_22.jpg)
 ### connect (black) GND wire
@@ -112,6 +112,18 @@
 ![assembling step 1](images/assembly_step_25.jpg)
 ### shrink and put in housing
 ![assembling step 1](images/assembly_step_26.jpg)
+## Assemble PIR
+prepare wires 
+ => add 12 mm 2.5 mm scrink tubing
+ => strip 6mm
+ => tin wire
+tin the connection points on the pir first
+remove plastic casing
+overall heatscrink tube dia 8mm x 15mm also over plastic of pins of the pir!
+connect 
+ => vcc = red
+ => gnd = black
+ => out = white
 # Case preparation
 [![PCB top view](images/casepreparation.jpg)](movies/casepreparation.mp4)
 

@@ -101,6 +101,17 @@
 ![assembling step 1](images/assembly_step_20.jpg)
 ### earthing wire (yellow/green)
 ![assembling step 1](images/assembly_step_21.jpg)
+## Connect push button
+### prepare wires
+![assembling step 1](images/assembly_step_22.jpg)
+### connect (black) GND wire
+![assembling step 1](images/assembly_step_23.jpg)
+### connect (white) SWITCH wire
+![assembling step 1](images/assembly_step_24.jpg)
+### connect (yellow) + LED wire
+![assembling step 1](images/assembly_step_25.jpg)
+### shrink and put in housing
+![assembling step 1](images/assembly_step_26.jpg)
 # Case preparation
 [![PCB top view](images/casepreparation.jpg)](movies/casepreparation.mp4)
 

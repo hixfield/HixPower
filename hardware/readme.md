@@ -1,7 +1,3 @@
-# Package
-- 330 gr (including box)
-- ideal box would be approx 70mm x 130mm x 100 mm
-
 # PCB
 *(click for high resolution image)*
 
@@ -97,20 +93,20 @@
 ### Step 19: Varistor
 ![assembling step 1](images/assembly_step_19.jpg)
 ## Assemble main wires
-### neutral (blue) and live (brown) mains connection wires
+### Step 29: neutral (blue) and live (brown) mains connection wires
 ![assembling step 1](images/assembly_step_20.jpg)
-### earthing wire (yellow/green)
+### Step 21: earthing wire (yellow/green)
 ![assembling step 1](images/assembly_step_21.jpg)
 ## Assemble push button
-### prepare wires
+### Step 22: prepare wires
 ![assembling step 1](images/assembly_step_22.jpg)
-### connect (black) GND wire
+### Step 23: connect (black) GND wire
 ![assembling step 1](images/assembly_step_23.jpg)
-### connect (white) SWITCH wire
+### Step 24: connect (white) SWITCH wire
 ![assembling step 1](images/assembly_step_24.jpg)
-### connect (yellow) + LED wire
+### Step 25: connect (yellow) + LED wire
 ![assembling step 1](images/assembly_step_25.jpg)
-### shrink and put in housing
+### Step 26: shrink and put in housing
 ![assembling step 1](images/assembly_step_26.jpg)
 ## Assemble PIR
 prepare wires 
@@ -124,6 +120,10 @@ connect
  => vcc = red
  => gnd = black
  => out = white
+ 
+# Packaging
+- 330 gr (including box)
+- ideal box would be approx 70mm x 130mm x 100 mm
 # Case preparation
 [![PCB top view](images/casepreparation.jpg)](movies/casepreparation.mp4)
 

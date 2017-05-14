@@ -1,3 +1,5 @@
+[![PCB top view](buyonebay.jpg)](http://www.benl.ebay.be)
+
 The ESP8266Power project is an open source project that includes both hardware design (schematic and PCB using eagle cad) and software for constructing on intelligent IoT mains power switch.
 
 It offers the following functions:

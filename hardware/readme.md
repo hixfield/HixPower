@@ -109,17 +109,18 @@
 ### Step 26: shrink and put in housing
 ![assembling step 1](images/assembly_step_26.jpg)
 ## Assemble PIR
-prepare wires 
- => add 12 mm 2.5 mm scrink tubing
- => strip 6mm
- => tin wire
-tin the connection points on the pir first
-remove plastic casing
-overall heatscrink tube dia 8mm x 15mm also over plastic of pins of the pir!
-connect 
- => vcc = red
- => gnd = black
- => out = white
+### Step 27: prepare and connect wires
+![assembling step 1](images/assembly_step_27.jpg)
+### Step 28: shrink and put in housing
+![assembling step 1](images/assembly_step_28.jpg)
+### Step 29: adjust settings
+![assembling step 1](images/assembly_step_29.jpg)
+
+- refer to [HC-SR501 Motion Sensor Tutorial]([http://henrysbench.capnfatz.com/henrys-bench/arduino-sensors-and-input/arduino-hc-sr501-motion-sensor-tutorial/#attachment%20wp-att-2111/0/])
+- trigger selection jumper => recommended REPEATABLE TRIGGER
+- set correct sensitivy and delay setings (variable resistors)
+ * Sensitivity Adjust => recommended MIDDLE
+ * Time Delay Adjust  => recommended MINIMUM
  
 # Packaging
 - 330 gr (including box)

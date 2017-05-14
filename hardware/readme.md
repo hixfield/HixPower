@@ -121,7 +121,42 @@
 - set correct sensitivy and delay setings (variable resistors)
  * Sensitivity Adjust => recommended MIDDLE
  * Time Delay Adjust  => recommended MINIMUM
- 
+
+## Prepare temperature sensor
+![assembling step 1](images/assembly_step_30.jpg)
+
+
+##Build PCB in the case
+- solder the temperature sensor to the pcb
+ - red = 3.3v
+ - black = GND
+ - blue = DATA  
+- put PCB in case and fix using the screws
+- put the temp sensor through the hole in the case
+- connect the mains and earth wires to the power pins in the case
+- cut 10 mm of heat shrink tube 8mm and slide it over the temperature sensor to fix it
+
+## Programming via the FTDI connector
+If you want to program manually via the FTDI connector:
+
+- DO NOT 	PLUG THE DEVICE IN THE POWER !
+- put in your USB -> SERIAL connector
+- Push the onboard buttons in the correct sequence:
+ - push and keep pushing the PROG button
+ - push the RESET (while keeping PROG pressed)
+ - release both butons
+- De device is now in programming mode 	
+
+##Assemble front
+- mount the push button in the front of the case
+- fix / glue the PIR sensor in the front of the case
+
+##Assemble the device
+- assemble front and back of case
+ - connect push button connector
+ - connect PIR connector
+- close case and put in the screws  
+
 # Packaging
 - 330 gr (including box)
 - ideal box would be approx 70mm x 130mm x 100 mm

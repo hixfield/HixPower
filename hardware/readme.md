@@ -116,7 +116,7 @@
 ### Step 29: adjust settings
 ![assembling step 1](images/assembly_step_29.jpg)
 
-- refer to [HC-SR501 Motion Sensor Tutorial]([http://henrysbench.capnfatz.com/henrys-bench/arduino-sensors-and-input/arduino-hc-sr501-motion-sensor-tutorial/#attachment%20wp-att-2111/0/])
+- refer to [HC-SR501 Motion Sensor Tutorial]([http://henrysbench.capnfatz.com/henrys-bench/arduino-sensors-and-input/arduino-hc-sr501-motion-sensor-tutorial/#attachment%20wp-att-2111/0/]) http://henrysbench.capnfatz.com/henrys-bench/arduino-sensors-and-input/arduino-hc-sr501-motion-sensor-tutorial/#attachment%20wp-att-2111/0/
 - trigger selection jumper => recommended REPEATABLE TRIGGER
 - set correct sensitivy and delay setings (variable resistors)
  * Sensitivity Adjust => recommended MIDDLE

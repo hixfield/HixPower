@@ -4,7 +4,7 @@
 #include <ArduinoOTA.h>
 #include <WiFiManager.h>         //refer to : https://github.com/tzapu/WiFiManager
 #include "RemoteDebug.h"         //refer to : https://github.com/JoaoLopesF/RemoteDebug
-#include "IBMMQTTClient.h"       //refer to : https://github.com/knolleary/pubsubclient
+#include "IBMMQTTClient.h"       
 #include "DS18B20Temperature.h"
 #include "HixTimeout.h"
 #include "HixPinOutput.h"

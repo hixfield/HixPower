@@ -1,7 +1,7 @@
 The software is written using the Arduino IDE and there are 2 version availabe, standalone and IBM Bluemix IoT platform.
 
 # General
-## ![High voltage](../hardware/images/high-voltage-icon.png) Over the air!
+## ![High voltage](images/high-voltage-icon.png) Over the air!
 
 Because the device uses high mains voltage, its not safe to use it and then connect a serial port for debugging to it. Its also very impractical of course.
 Therefore debugging and firmware upload is done over the air:
@@ -21,7 +21,7 @@ Refer to
 [ArduinoOTA](https://github.com/esp8266/Arduino/tree/master/libraries/ArduinoOTA) as part of the ESP8266 core for Arduino.
 
 
-## ![](../hardware/images/wifi-icon.png) WiFiManager
+## ![](images/wifi-icon.png) WiFiManager
 When the device is initially booted it will present itself as an access point.
 It will then present an nice interface to input your WIFI credentials and then reboot into "normal" operation.
 

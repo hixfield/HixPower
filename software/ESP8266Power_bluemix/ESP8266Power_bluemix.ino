@@ -4,7 +4,7 @@
 #include <ArduinoOTA.h>
 #include <WiFiManager.h>         //refer to : https://github.com/tzapu/WiFiManager
 #include "RemoteDebug.h"         //refer to : https://github.com/JoaoLopesF/RemoteDebug
-#include "IBMMQTTClient.h"       
+#include "IBMMQTTClient.h"
 #include "DS18B20Temperature.h"
 #include "HixTimeout.h"
 #include "HixPinOutput.h"
@@ -167,7 +167,7 @@ void mqttCallback(char * topic, unsigned char *payload, unsigned int payloadLeng
     isrButton();
   }
 
-  if(mqttClient.topicIsReboot(topic) || mqttClient.topicIsFactoryReset(topic)) {
+  if (mqttClient.topicIsReboot(topic) || mqttClient.topicIsFactoryReset(topic)) {
     mqttClient.disconnect();
     g_Debug.stop();
     ESP.restart();

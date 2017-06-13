@@ -52,7 +52,7 @@
 
 # Assembly instructions
 ## soldering of the PCB
-### Step 0: BC547 transistors
+### Step 0: BC847 transistors
 ![assembling step 1](images/assembly_step_0.jpg)
 ### Step 1: 10K resistors
 ![assembling step 1](images/assembly_step_1.jpg)

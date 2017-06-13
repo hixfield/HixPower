@@ -5,6 +5,10 @@
 |--------------------------------------------------|-----------------------------------------------------------|
 | [![PCB top view](images/pcbtop_lowres.jpg)](images/pcbtop.jpg) | [![PCB bottom view](images/pcbbottom_lowres.jpg)](images/pcbbottom.jpg) |
 
+# Schematic
+(the repository contains the EagleCAD file)
+![image of schematic](images/schematic.png)
+
 # Components
 ## bill of materials
 | Qty needed | Qty delivered | Part                                     | Value                    | Description                                                           | picture                                | 

@@ -2,6 +2,7 @@
 #include <HixDS18B20.h>
 #include "EspMQTTClient.h"
 #include "DS18B20Temperature.h"
+#include "secret.h"
 
 //globals
 HixPinDigitalOutput  g_beeper(2);
@@ -9,13 +10,10 @@ HixPinDigitalOutput  g_relay(14);
 HixPinDigitalOutput  g_led(5);
 DS18B20Temperature   g_temperature(12);
 EspMQTTClient        g_client(
-  "xxxxx",
-  "xxxxx",
-  "192.168.99.219",  // MQTT Broker server ip
-  //  "MQTTUsername",   // Can be omitted if not needed
-  //  "MQTTPassword",   // Can be omitted if not needed
-  "ESP8266"     // Client name that uniquely identify your device
-  //  1883              // The MQTT port, default to 1883. this line can be omitted
+  WIFI_SSID,
+  WIFI_PWD,
+  MQTT_SERVER,
+  MQTT_NAME
 );
 bool g_bBeeping      = false;
 float g_fTemperature = 0.0;

@@ -23,8 +23,8 @@ Hardware (schematic and PCB) and software for a WIFI connected intelligent power
 - based on popular [ESP8266](http://esp8266.com)
 
 # Hardware
-[Click here for hardware information](hardware/readme.md)
+[Click here for hardware information](hardware/README.md)
 # Software
-[Click here for software information](software/readme.md)
+[Click here for software information](software/README.md)
 # overview
 ![Finished product](hardware/images/assembled.jpg)

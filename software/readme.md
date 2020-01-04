@@ -1,45 +1,54 @@
-The software is written using the Arduino IDE and there are 2 version availabe, standalone and IBM Bluemix IoT platform.
+![Build with PlatformIO](https://img.shields.io/badge/build%20with-PlatformIO-orange?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB3aWR0aD0iMjUwMCIgaGVpZ2h0PSIyNTAwIiB2aWV3Qm94PSIwIDAgMjU2IDI1NiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCI+PHBhdGggZD0iTTEyOCAwQzkzLjgxIDAgNjEuNjY2IDEzLjMxNCAzNy40OSAzNy40OSAxMy4zMTQgNjEuNjY2IDAgOTMuODEgMCAxMjhjMCAzNC4xOSAxMy4zMTQgNjYuMzM0IDM3LjQ5IDkwLjUxQzYxLjY2NiAyNDIuNjg2IDkzLjgxIDI1NiAxMjggMjU2YzM0LjE5IDAgNjYuMzM0LTEzLjMxNCA5MC41MS0zNy40OUMyNDIuNjg2IDE5NC4zMzQgMjU2IDE2Mi4xOSAyNTYgMTI4YzAtMzQuMTktMTMuMzE0LTY2LjMzNC0zNy40OS05MC41MUMxOTQuMzM0IDEzLjMxNCAxNjIuMTkgMCAxMjggMCIgZmlsbD0iI0ZGN0YwMCIvPjxwYXRoIGQ9Ik0yNDkuMzg2IDEyOGMwIDY3LjA0LTU0LjM0NyAxMjEuMzg2LTEyMS4zODYgMTIxLjM4NkM2MC45NiAyNDkuMzg2IDYuNjEzIDE5NS4wNCA2LjYxMyAxMjggNi42MTMgNjAuOTYgNjAuOTYgNi42MTQgMTI4IDYuNjE0YzY3LjA0IDAgMTIxLjM4NiA1NC4zNDYgMTIxLjM4NiAxMjEuMzg2IiBmaWxsPSIjRkZGIi8+PHBhdGggZD0iTTE2MC44NjkgNzQuMDYybDUuMTQ1LTE4LjUzN2M1LjI2NC0uNDcgOS4zOTItNC44ODYgOS4zOTItMTAuMjczIDAtNS43LTQuNjItMTAuMzItMTAuMzItMTAuMzJzLTEwLjMyIDQuNjItMTAuMzIgMTAuMzJjMCAzLjc1NSAyLjAxMyA3LjAzIDUuMDEgOC44MzdsLTUuMDUgMTguMTk1Yy0xNC40MzctMy42Ny0yNi42MjUtMy4zOS0yNi42MjUtMy4zOWwtMi4yNTggMS4wMXYxNDAuODcybDIuMjU4Ljc1M2MxMy42MTQgMCA3My4xNzctNDEuMTMzIDczLjMyMy04NS4yNyAwLTMxLjYyNC0yMS4wMjMtNDUuODI1LTQwLjU1NS01Mi4xOTd6TTE0Ni41MyAxNjQuOGMtMTEuNjE3LTE4LjU1Ny02LjcwNi02MS43NTEgMjMuNjQzLTY3LjkyNSA4LjMyLTEuMzMzIDE4LjUwOSA0LjEzNCAyMS41MSAxNi4yNzkgNy41ODIgMjUuNzY2LTM3LjAxNSA2MS44NDUtNDUuMTUzIDUxLjY0NnptMTguMjE2LTM5Ljc1MmE5LjM5OSA5LjM5OSAwIDAgMC05LjM5OSA5LjM5OSA5LjM5OSA5LjM5OSAwIDAgMCA5LjQgOS4zOTkgOS4zOTkgOS4zOTkgMCAwIDAgOS4zOTgtOS40IDkuMzk5IDkuMzk5IDAgMCAwLTkuMzk5LTkuMzk4em0yLjgxIDguNjcyYTIuMzc0IDIuMzc0IDAgMSAxIDAtNC43NDkgMi4zNzQgMi4zNzQgMCAwIDEgMCA0Ljc0OXoiIGZpbGw9IiNFNTcyMDAiLz48cGF0aCBkPSJNMTAxLjM3MSA3Mi43MDlsLTUuMDIzLTE4LjkwMWMyLjg3NC0xLjgzMiA0Ljc4Ni01LjA0IDQuNzg2LTguNzAxIDAtNS43LTQuNjItMTAuMzItMTAuMzItMTAuMzItNS42OTkgMC0xMC4zMTkgNC42Mi0xMC4zMTkgMTAuMzIgMCA1LjY4MiA0LjU5MiAxMC4yODkgMTAuMjY3IDEwLjMxN0w5NS44IDc0LjM3OGMtMTkuNjA5IDYuNTEtNDAuODg1IDIwLjc0Mi00MC44ODUgNTEuODguNDM2IDQ1LjAxIDU5LjU3MiA4NS4yNjcgNzMuMTg2IDg1LjI2N1Y2OC44OTJzLTEyLjI1Mi0uMDYyLTI2LjcyOSAzLjgxN3ptMTAuMzk1IDkyLjA5Yy04LjEzOCAxMC4yLTUyLjczNS0yNS44OC00NS4xNTQtNTEuNjQ1IDMuMDAyLTEyLjE0NSAxMy4xOS0xNy42MTIgMjEuNTExLTE2LjI4IDMwLjM1IDYuMTc1IDM1LjI2IDQ5LjM2OSAyMy42NDMgNjcuOTI2em0tMTguODItMzkuNDZhOS4zOTkgOS4zOTkgMCAwIDAtOS4zOTkgOS4zOTggOS4zOTkgOS4zOTkgMCAwIDAgOS40IDkuNCA5LjM5OSA5LjM5OSAwIDAgMCA5LjM5OC05LjQgOS4zOTkgOS4zOTkgMCAwIDAtOS4zOTktOS4zOTl6bS0yLjgxIDguNjcxYTIuMzc0IDIuMzc0IDAgMSAxIDAtNC43NDggMi4zNzQgMi4zNzQgMCAwIDEgMCA0Ljc0OHoiIGZpbGw9IiNGRjdGMDAiLz48L3N2Zz4=)
+![Software released](https://img.shields.io/badge/SW-released-green)
 
-# General
-## ![High voltage](images/high-voltage-icon.png) Over the air!
+# HixPower
 
-Because the device uses high mains voltage, its not safe to use it and then connect a serial port for debugging to it. Its also very impractical of course.
-Therefore debugging and firmware upload is done over the air:
+Software for a WIFI connected intelligent power switch. It contains a temperature sensor, PIR motion sensor, button (with LED) and buzzer and is based on the ESP8266 microcontroller. Its measurements are pubished via MQTT and it can also be controlled via MQTT. Its part of my home automation system based on a raspberry pi running Mosquitoo, Nodered, InfluxDB and Grafana.
 
-###  Remote debugging via telnet
+## ![High voltage](doc/high-voltage-disconnect-power.png)
 
-All versions (standalone, IBM Bluemix...) use remote debugging via a telent conneciton.
+This device uses high mains voltage! Remove it from the mains power (socket) while programming via the onboard FTDI connector. During programming and debugging the device can safely be powered via the FTDI with 5V. It will boot and work normally drawing power over the FTDI. This way you can also debug using the onboard serial port for the ESP8266 environment.
 
-Refer to 
-[RemoteDebug Library for ESP8266](https://github.com/JoaoLopesF/RemoteDebug) as written by Joao Lopes.
+Make sure your FTDI programmer can deliver the required power. Mine, a chinese clone "Deek-Robot" had no problem at all.
+Once initially flashed the device can be updated Over The Air (OTA) (as supported by this firmware).
 
-### ArduinoOTA
+## MQTT
 
-All versions include the ArduinoOTA functionality so you can upload new firware in the device over the air.
-
-Refer to 
-[ArduinoOTA](https://github.com/esp8266/Arduino/tree/master/libraries/ArduinoOTA) as part of the ESP8266 core for Arduino.
+### Publishing
 
 
-## ![](images/wifi-icon.png) WiFiManager
-When the device is initially booted it will present itself as an access point.
-It will then present an nice interface to input your WIFI credentials and then reboot into "normal" operation.
+```
+{room}
+   └─── HixCO2
+           └─── {deviceTag}
+                     └─── device
+                     │       └─── count
+                     │       └─── room
+                     │       └─── device_type
+                     │       └─── device_version
+                     │       └─── device_tag
+                     │       └─── device_name
+                     │       └─── wifi_ssid
+                     │       └─── wifi_ip
+                     │       
+                     └─── status
+                     │       └─── count
+                     │       └─── wifi_rssi
+                     │       └─── co2
+                     │       └─── temperature
+                     │
+                     └─── influxdb
+```
 
-Refer to [WiFiManager](https://github.com/tzapu/WiFiManager) as written by tzapu.
+### Subscribing
 
-# IBM Bluemix software
+This device does not subscribe to any topics
 
-Refer to [IBM Bluemix IoT platform](https://www.ibm.com/cloud-computing/bluemix/internet-of-things).
+## Configuration web interface
 
-Connects the devices to the IBM Bluemix IoT service. Just subscribe for a 30 day trail (and after this its still free because we consume not nearly enough resources!). After you entrolled and configured the environment enter the secrets (organisation and token) in the secret.h file, compile and upload to the device!
+![Config web interface](doc/config.png)
 
-# Standalone software
-The device operates in standalone mode, pressing the button on the front panel enables the load for 25 minutes, but operates in thermostat mode with a desired temperature of 23 degrees. The load will be switched off if temp gets higher and will automatically switch on again if its lower, a temp hysteresis of 1 degree is used. 
-
-Todo:
-
-- usage of the PIR to be implemented
-- program a nice web ui for setting different parameters
-- ...
-
-
+* Once connectted to the WIFI a normal browser can be used to configure the MQTT details.
+* Just go the the device's ip address with your browser
+* Password is intitially set as `bornem1973`.
+* At this moment the WIFI SSID and password are hardcoded in the src/secret.cpp file

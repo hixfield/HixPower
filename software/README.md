@@ -30,14 +30,56 @@ Once initially flashed the device can be updated Over The Air (OTA) (as supporte
                      │       └─── device_name
                      │       └─── wifi_ssid
                      │       └─── wifi_ip
+                     │       └─── desired_temperature
+                     │       └─── auto_switchoff_seconds
                      │       
                      └─── status
                      │       └─── count
                      │       └─── wifi_rssi
-                     │       └─── co2
                      │       └─── temperature
+                     │       └─── motion_detected
+                     │       └─── switch_pressed
+                     │       └─── beeper_on
+                     │       └─── output_allowed
+                     │       └─── output_on
+                     │       └─── auto_switchoff_seconds_left
                      │
                      └─── influxdb
+```
+
+#### `influxdb` topic publishing contents
+To make the import in the influxdb from Node-RED as easy as possible the `influxdb` topic publishes a json document that can immediatly imported using the `influxdb in` node.
+They only thing required is to convert it to a json object via the `To json` node.
+![Node-RED influxDB import](doc/nodered.png)
+
+Following the `influxdb in` node the json is an array where:
+
+- the first element contains the measurements
+- the second element contains the tags
+ 
+
+```
+[  
+   {  
+      "wifi_rssi"                   : -45,
+      "temperature"                 : 45,
+      "motion_detected"             : true,
+      "switch_pressed"              : false,
+      "beeper_on"                   : false,
+      "output_allowed"              : true,
+      "output_on".                  : true,
+      "auto_switchoff_seconds_left" : 768
+   },
+   {  
+      "device_type".                 : "HixPower",
+      "device_version".              : "2.2.9",
+      "device_tag".                  : "heating",
+      "room"                         : "bathroom",
+      "wifi_ssid".                   : "public_wifi",
+      "desired_temperature".         : "public_wifi",
+      "auto_switchoff_seconds_left". : "public_wifi"
+   }
+]
 ```
 
 ### Subscribing

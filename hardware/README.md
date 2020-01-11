@@ -98,6 +98,7 @@
 ![assembling step 1](images/assembly_step_19.jpg)
 ## Assemble main wires
 ### Step 29: neutral (blue) and live (brown) mains connection wires
+1.5 mm² x 70 mm
 ![assembling step 1](images/assembly_step_20.jpg)
 ### Step 21: earthing wire (yellow/green)
 ![assembling step 1](images/assembly_step_21.jpg)

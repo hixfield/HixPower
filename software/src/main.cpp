@@ -1,3 +1,8 @@
+#include "DS18B20Temperature.h"
+#include "HixConfig.h"
+#include "HixMQTT.h"
+#include "HixWebServer.h"
+#include "secret.h"
 #include <ArduinoOTA.h>
 #include <FS.h>
 #include <HixLED.h>
@@ -5,16 +10,11 @@
 #include <HixPinDigitalOutput.h>
 #include <HixString.h>
 #include <HixTimeout.h>
-#include "DS18B20Temperature.h"
-#include "HixConfig.h"
-#include "HixMQTT.h"
-#include "HixWebServer.h"
-#include "secret.h"
 
 // runtime global variables
-HixConfig g_config;
+HixConfig    g_config;
 HixWebServer g_webServer(g_config);
-HixMQTT g_mqtt(g_config,
+HixMQTT      g_mqtt(g_config,
                Secret::WIFI_SSID,
                Secret::WIFI_PWD,
                g_config.getMQTTServer(),
@@ -25,21 +25,21 @@ HixMQTT g_mqtt(g_config,
 //hardware related
 HixPinDigitalOutput g_beeper(2);
 HixPinDigitalOutput g_relay(14);
-HixLED g_led(5);
-HixPinDigitalInput g_motion(13);
-HixPinDigitalInput g_switch(4);
-DS18B20Temperature g_temperature(12);
+HixLED              g_led(5);
+HixPinDigitalInput  g_motion(13);
+HixPinDigitalInput  g_switch(4);
+DS18B20Temperature  g_temperature(12);
 //software related
-HixTimeout g_sampler(1000, true);
-HixTimeout g_logger(5000, true);
-HixTimeout g_buttonTimeout(500, true);
-HixTimeout g_motionTimeout(5000, true);
-HixTimeout g_relayTimeout(g_config.getAutoSwitchOffSeconds() * 1000, true);
+HixTimeout    g_sampler(1000, true);
+HixTimeout    g_logger(5000, true);
+HixTimeout    g_buttonTimeout(500, true);
+HixTimeout    g_motionTimeout(5000, true);
+HixTimeout    g_relayTimeout(g_config.getAutoSwitchOffSeconds() * 1000, true);
 volatile bool g_bLedBlinking = false;
 //sensor values
-float g_fTemperature = 0;
+float         g_fTemperature    = 0;
 volatile bool g_bDetectedMotion = false;
-volatile bool g_bPressedSwitch = false;
+volatile bool g_bPressedSwitch  = false;
 
 //////////////////////////////////////////////////////////////////////////////////
 // Helper functions
@@ -76,7 +76,7 @@ void configureOTA() {
     ArduinoOTA.begin();
 }
 
-void resetWithMessage(const char* szMessage) {
+void resetWithMessage(const char * szMessage) {
     Serial.println(szMessage);
     delay(2000);
     ESP.reset();
@@ -199,8 +199,11 @@ void loop() {
     bool bHandledMotion = handleDetectedMotion();
     bool bHandledSwitch = handlePresseeSwitch();
     if (bHandledSwitch) g_beeper.blink(true, 1, 150);
-
     bool bForcePublishing = bHandledMotion || bHandledSwitch;
+    //now we calculated if we should forcepublishing we also set motion to true if its still high...
+    bHandledMotion = bHandledMotion || g_motion.isHigh();
+    //beep while motion detected
+    //g_beeper.digitalWrite(bHandledMotion);
     //update relay
     g_relay.digitalWrite(heatingAllowed());
     //blink led if not connected
@@ -264,21 +267,21 @@ void onConnectionEstablished() {
     g_mqtt.publishStatusValues(g_fTemperature, g_bDetectedMotion, g_bPressedSwitch, g_beeper.isHigh(), g_relayTimeout.isRunning(), g_relay.isHigh(), g_relayTimeout.timeLeftMs() / 1000);
 
     //register for display
-    g_mqtt.subscribe(g_mqtt.topicForPath("subscribe/desired_temperature"), [](const String& payload) {
+    g_mqtt.subscribe(g_mqtt.topicForPath("subscribe/desired_temperature"), [](const String & payload) {
         g_config.setDesiredTemperature(payload.toFloat());
         g_beeper.blink(1, 1, 10);
         g_mqtt.publishDeviceValues();
     });
 
     //register for beeper
-    g_mqtt.subscribe(g_mqtt.topicForPath("subscribe/auto_switchoff_seconds"), [](const String& payload) {
+    g_mqtt.subscribe(g_mqtt.topicForPath("subscribe/auto_switchoff_seconds"), [](const String & payload) {
         g_config.setAutoSwitchOffSeconds(payload.toInt());
         g_beeper.blink(1, 1, 10);
         g_mqtt.publishDeviceValues();
     });
 
     //register for enable switching on
-    g_mqtt.subscribe(g_mqtt.topicForPath("subscribe/output_toggle"), [](const String& payload) {
+    g_mqtt.subscribe(g_mqtt.topicForPath("subscribe/output_toggle"), [](const String & payload) {
         pressedSwitch();
     });
 }

@@ -3,7 +3,7 @@
 
 # HixPower
 
-Software for a WIFI connected intelligent power switch. It contains a temperature sensor, PIR motion sensor, button (with LED) and buzzer and is based on the ESP8266 microcontroller. Its measurements are pubished via MQTT and it can also be controlled via MQTT. Its part of my home automation system based on a raspberry pi running Mosquitoo, Nodered, InfluxDB and Grafana.
+Software for a WIFI connected intelligent power switch. It contains a temperature sensor, PIR/radar motion sensor, button (with LED) and buzzer and is based on the ESP8266 microcontroller. Its measurements are pubished via MQTT and it can also be controlled via MQTT. Its part of my home automation system based on a raspberry pi running Mosquitoo, Nodered, InfluxDB and Grafana.
 
 ## ![High voltage](doc/high-voltage-disconnect-power.png)
 
@@ -44,8 +44,16 @@ Once initially flashed the device can be updated Over The Air (OTA) (as supporte
                      │       └─── output_on
                      │       └─── auto_switchoff_seconds_left
                      │
+                     └─── subscribe
+                     │       └─── desired_temperature
+                     │       └─── auto_switchoff_seconds
+                     │       └─── output_toggle
+                     │
                      └─── influxdb
 ```
+
+### Subscribing
+This device listens to the above depicted topics to set the desired temperature, auto switch off timeout and you can switch it on/off (toggle).
 
 #### `influxdb` topic publishing contents
 To make the import in the influxdb from Node-RED as easy as possible the `influxdb` topic publishes a json document that can immediatly imported using the `influxdb in` node.
@@ -81,10 +89,6 @@ Following the `influxdb in` node the json is an array where:
    }
 ]
 ```
-
-### Subscribing
-
-This device does not subscribe to any topics
 
 ## Configuration web interface
 

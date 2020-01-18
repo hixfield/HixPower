@@ -85,7 +85,7 @@ void resetWithMessage(const char * szMessage) {
 void selfTest(void) {
     g_relay.blink(true, 5, 100);
     g_led.blink(true, 5, 100);
-    g_beeper.blink(true, 5, 10);
+    g_beeper.blink(true, 5, 100);
 }
 
 bool heatingAllowed() {
@@ -195,6 +195,7 @@ void loop() {
     //other loop functions
     g_mqtt.loop();
     g_webServer.handleClient();
+    ArduinoOTA.handle();
     //isr handles & check if should do force publishing
     bool bHandledMotion = handleDetectedMotion();
     bool bHandledSwitch = handlePresseeSwitch();

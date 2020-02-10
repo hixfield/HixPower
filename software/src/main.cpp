@@ -270,6 +270,7 @@ void onConnectionEstablished() {
     //register for display
     g_mqtt.subscribe(g_mqtt.topicForPath("subscribe/desired_temperature"), [](const String & payload) {
         g_config.setDesiredTemperature(payload.toFloat());
+        g_config.commitToEEPROM();
         g_beeper.blink(1, 1, 10);
         g_mqtt.publishDeviceValues();
     });
@@ -277,6 +278,7 @@ void onConnectionEstablished() {
     //register for beeper
     g_mqtt.subscribe(g_mqtt.topicForPath("subscribe/auto_switchoff_seconds"), [](const String & payload) {
         g_config.setAutoSwitchOffSeconds(payload.toInt());
+        g_config.commitToEEPROM();
         g_beeper.blink(1, 1, 10);
         g_mqtt.publishDeviceValues();
     });

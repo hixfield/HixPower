@@ -182,6 +182,7 @@ void setup() {
     g_switch.attachInterrupt(pressedSwitch, FALLING);
     //hookup motion detector
     Serial.println(F("Hooking up the motion detector"));
+    g_motion.begin();
     g_motion.attachInterrupt(detectedMotion, RISING);
     // all done
     Serial.println(F("Setup complete"));

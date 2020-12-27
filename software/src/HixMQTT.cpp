@@ -76,6 +76,7 @@ String HixMQTT::influxDBJson(float         fTemperature,
     doc_0["output_allowed"]              = bOutputAllowed;
     doc_0["output_on"]                   = bOutputOn;
     doc_0["auto_switchoff_seconds_left"] = nSecondsLeft;
+    doc_0["wifi_rssi"]                   = WiFi.RSSI();
 
     //the device props => tags
     JsonObject doc_1                     = doc.createNestedObject();
@@ -83,6 +84,7 @@ String HixMQTT::influxDBJson(float         fTemperature,
     doc_1["device_version"]              = m_deviceVersion;
     doc_1["device_tag"]                  = m_deviceTag;
     doc_1["room"]                        = m_room;
+    doc_1["wifi_mac"]                    = WiFi.macAddress();
     doc_1["wifi_ssid"]                   = WiFi.SSID();
     doc_1["desired_temperature"]         = m_config.getDesiredTemperature();
     doc_1["auto_switchoff_seconds_left"] = m_config.getAutoSwitchOffSeconds();

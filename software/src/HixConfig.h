@@ -28,7 +28,7 @@ class HixConfig {
     HixConfig();
     //getters
     const char *  getDeviceType(void) { return "HixPower"; };
-    const char *  getDeviceVersion(void) { return "2.3.0"; };
+    const char *  getDeviceVersion(void) { return "2.3.4"; };
     const char *  getMQTTServer(void);
     const char *  getRoom(void);
     const char *  getDeviceTag(void);

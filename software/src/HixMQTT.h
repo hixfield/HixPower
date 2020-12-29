@@ -25,7 +25,8 @@ class HixMQTT : public HixMQTTBase {
             const char * szDeviceType,
             const char * szDeviceVersion,
             const char * szRoom,
-            const char * szDeviceTag);
+            const char * szDeviceTag,
+            const char * szDeviceBuildTimestamp);
     //publishes all the values for the sensor
     bool publishStatusValues(float         fTemperature,
                              bool          bMotionDetected,

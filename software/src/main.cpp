@@ -21,7 +21,8 @@ HixMQTT      g_mqtt(g_config,
                g_config.getDeviceType(),
                g_config.getDeviceVersion(),
                g_config.getRoom(),
-               g_config.getDeviceTag());
+               g_config.getDeviceTag(),
+               g_config.getDeviceBuildTimestamp());
 //hardware related
 HixPinDigitalOutput g_beeper(2);
 HixPinDigitalOutput g_relay(14);

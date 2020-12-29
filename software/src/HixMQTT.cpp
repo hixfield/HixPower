@@ -9,8 +9,9 @@ HixMQTT::HixMQTT(HixConfig &  config,
                  const char * szDeviceType,
                  const char * szDeviceVersion,
                  const char * szRoom,
-                 const char * szDeviceTag) : HixMQTTBase(szWifi_SSID, szWiFi_Password, szMQTT_Server, szDeviceType, szDeviceVersion, szRoom, szDeviceTag),
-                                             m_config(config) {
+                 const char * szDeviceTag,
+                 const char * szDeviceBuildTimestamp) : HixMQTTBase(szWifi_SSID, szWiFi_Password, szMQTT_Server, szDeviceType, szDeviceVersion, szRoom, szDeviceTag, szDeviceBuildTimestamp),
+                                                        m_config(config) {
 }
 
 bool HixMQTT::publishDeviceValues(void) {
@@ -83,6 +84,7 @@ String HixMQTT::influxDBJson(float         fTemperature,
     doc_1["device_type"]                 = m_deviceType;
     doc_1["device_version"]              = m_deviceVersion;
     doc_1["device_tag"]                  = m_deviceTag;
+    doc_1["device_build_timestamp"]      = m_deviceBuildTimestamp;
     doc_1["room"]                        = m_room;
     doc_1["wifi_mac"]                    = WiFi.macAddress();
     doc_1["wifi_ssid"]                   = WiFi.SSID();

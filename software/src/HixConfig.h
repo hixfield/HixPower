@@ -11,6 +11,7 @@ class HixConfig {
     const float m_fTemperatureHysteresis = 1.0f;
     //hilds the data
     struct {
+        int           nNumberOfBootUps;
         char          szMQTTServer[50];
         char          szRoom[50];
         char          szDeviceTag[50];
@@ -27,8 +28,10 @@ class HixConfig {
   public:
     HixConfig();
     //getters
+    int           getNumberOfBootUps(void);
     const char *  getDeviceType(void) { return "HixPower"; };
-    const char *  getDeviceVersion(void) { return "2.3.4"; };
+    const char *  getDeviceVersion(void) { return "2.3.5"; };
+    const char *  getDeviceBuildTimestamp(void);
     const char *  getMQTTServer(void);
     const char *  getRoom(void);
     const char *  getDeviceTag(void);
@@ -41,7 +44,7 @@ class HixConfig {
     void setMQTTServer(const char * szValue);
     void setRoom(const char * szValue);
     void setDeviceTag(const char * szValue);
-    void setOTAEnabled(bool bValue);    
+    void setOTAEnabled(bool bValue);
     void setDesiredTemperature(float fValue);
     void setAutoSwitchOffSeconds(unsigned long ulValue);
     //save to eeprom

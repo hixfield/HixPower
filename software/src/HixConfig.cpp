@@ -10,6 +10,14 @@ HixConfig::HixConfig() {
     }
 }
 
+int HixConfig::getNumberOfBootUps(void) {
+    return data.nNumberOfBootUps;
+}
+
+const char * HixConfig::getDeviceBuildTimestamp(void) {
+    return __DATE__ " " __TIME__;
+}
+
 const char * HixConfig::getMQTTServer(void) {
     return data.szMQTTServer;
 };
@@ -96,10 +104,16 @@ void HixConfig::commitDefaults(void) {
 }
 
 void HixConfig::replacePlaceholders(String & contents) {
+    contents.replace("||NBR_BOOTUPS||", String(getNumberOfBootUps()));
     contents.replace("||MQTT_SERVER||", getMQTTServer());
     contents.replace("||ROOM||", getRoom());
     contents.replace("||DEVICE_TAG||", getDeviceTag());
     contents.replace("||DEVICE_TYPE||", getDeviceType());
     contents.replace("||DEVICE_VERSION||", getDeviceVersion());
     contents.replace("||OTA_ENABLED||", getOTAEnabled() ? "checked" : "");
+    contents.replace("||RESET_REASON||", ESP.getResetReason());
+    contents.replace("||RESET_INFO||", ESP.getResetInfo());
+    contents.replace("||FREE_HEAP||", String(ESP.getFreeHeap()));
+    contents.replace("||FREE_STACK||", String(ESP.getFreeContStack()));
+    contents.replace("||BUILD_TIMESTAMP||", getDeviceBuildTimestamp());
 }

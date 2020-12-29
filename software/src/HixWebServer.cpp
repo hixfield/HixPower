@@ -46,7 +46,6 @@ bool HixWebServer::shouldReplacePlaceholders(String filename) {
 
 // send the right file to the client (if it exists)
 bool HixWebServer::handleFileRead(String path) {
-    char buf[1024];
     Serial.println("handleFileRead: " + path);
     //check for postback of config data
     if (path.endsWith("/postconfig")) {
@@ -60,12 +59,7 @@ bool HixWebServer::handleFileRead(String path) {
     if (SPIFFS.exists(path)) {
         File file = SPIFFS.open(path, "r");
         if (shouldReplacePlaceholders(path)) {
-            //read file in memory and...
-            size_t size = file.readBytes(buf, sizeof(buf));
-            //...zero terminate
-            buf[size] = 0;
-            //create string of it
-            String contents(buf);
+            String contents = file.readString();
             m_config.replacePlaceholders(contents);
             //send it
             send(200, contentType, contents);
@@ -96,7 +90,7 @@ bool HixWebServer::handlePostConfig(void) {
     m_config.commitToEEPROM();
     //send reply
     const char * szSavedHtml = "/saved.html";
-    File file = SPIFFS.open(szSavedHtml, "r");
+    File         file        = SPIFFS.open(szSavedHtml, "r");
     streamFile(file, getContentType(String(szSavedHtml)));
     file.close();
     //reset!

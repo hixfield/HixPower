@@ -1,4 +1,4 @@
-#include "DS18B20Temperature.h"
+#include "HixDS18B20.h"
 #include "HixConfig.h"
 #include "HixMQTT.h"
 #include "HixWebServer.h"
@@ -29,7 +29,7 @@ HixPinDigitalOutput g_relay(14);
 HixLED              g_led(5);
 HixPinDigitalInput  g_motion(13);
 HixPinDigitalInput  g_switch(4);
-DS18B20Temperature  g_temperature(12);
+HixDS18B20          g_temperature(12);
 //software related
 HixTimeout    g_sampler(1000, true);
 HixTimeout    g_logger(5000, true);
@@ -103,7 +103,7 @@ bool heatingAllowed() {
     return g_fTemperature < g_config.getSwitchOnTemperature();
 }
 
-bool handlePresseeSwitch(void) {
+bool handlePressedSwitch(void) {
     if (!g_bPressedSwitch) return false;
     g_bPressedSwitch = false;
     //debouncing
@@ -200,7 +200,7 @@ void loop() {
     ArduinoOTA.handle();
     //isr handles & check if should do force publishing
     bool bHandledMotion = handleDetectedMotion();
-    bool bHandledSwitch = handlePresseeSwitch();
+    bool bHandledSwitch = handlePressedSwitch         ();
     if (bHandledSwitch) g_beeper.blink(true, 1, 150);
     bool bForcePublishing = bHandledMotion || bHandledSwitch;
     //now we calculated if we should forcepublishing we also set motion to true if its still high...

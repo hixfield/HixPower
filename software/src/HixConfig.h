@@ -30,7 +30,7 @@ class HixConfig {
     //getters
     int           getNumberOfBootUps(void);
     const char *  getDeviceType(void) { return "HixPower"; };
-    const char *  getDeviceVersion(void) { return "2.3.7"; };
+    const char *  getDeviceVersion(void) { return "2.3.8"; };
     const char *  getDeviceBuildTimestamp(void);
     const char *  getMQTTServer(void);
     const char *  getRoom(void);

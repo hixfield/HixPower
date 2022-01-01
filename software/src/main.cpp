@@ -1,5 +1,5 @@
-#include "HixDS18B20.h"
 #include "HixConfig.h"
+#include "HixDS18B20.h"
 #include "HixMQTT.h"
 #include "HixWebServer.h"
 #include "secret.h"
@@ -23,21 +23,21 @@ HixMQTT      g_mqtt(g_config,
                g_config.getRoom(),
                g_config.getDeviceTag(),
                g_config.getDeviceBuildTimestamp());
-//hardware related
+// hardware related
 HixPinDigitalOutput g_beeper(2);
 HixPinDigitalOutput g_relay(14);
 HixLED              g_led(5);
 HixPinDigitalInput  g_motion(13);
 HixPinDigitalInput  g_switch(4);
 HixDS18B20          g_temperature(12);
-//software related
+// software related
 HixTimeout    g_sampler(1000, true);
 HixTimeout    g_logger(5000, true);
 HixTimeout    g_buttonTimeout(500, true);
 HixTimeout    g_motionTimeout(5000, true);
 HixTimeout    g_relayTimeout(g_config.getAutoSwitchOffSeconds() * 1000, true);
 volatile bool g_bLedBlinking = false;
-//sensor values
+// sensor values
 float         g_fTemperature    = 0;
 volatile bool g_bDetectedMotion = false;
 volatile bool g_bPressedSwitch  = false;
@@ -51,7 +51,7 @@ void configureOTA() {
     Serial.println(g_mqtt.getMqttClientName());
     ArduinoOTA.setHostname(g_mqtt.getMqttClientName());
     ArduinoOTA.setPort(8266);
-    //setup handlers
+    // setup handlers
     ArduinoOTA.onStart([]() {
         Serial.println("OTA -> Start");
     });
@@ -90,46 +90,46 @@ void selfTest(void) {
 }
 
 bool heatingAllowed() {
-    //if not running no heating allowed
+    // if not running no heating allowed
     if (g_relayTimeout.isExpired()) {
         return false;
     }
-    //ok, heating is allowed...
-    //if we are currently on, keep heating until high temp reached
+    // ok, heating is allowed...
+    // if we are currently on, keep heating until high temp reached
     if (g_relay.isHigh()) {
         return g_fTemperature < g_config.getSwitchOffTemperature();
     }
-    //if currently off switch on if low temp reached
+    // if currently off switch on if low temp reached
     return g_fTemperature < g_config.getSwitchOnTemperature();
 }
 
 bool handlePressedSwitch(void) {
     if (!g_bPressedSwitch) return false;
     g_bPressedSwitch = false;
-    //debouncing
+    // debouncing
     if (g_buttonTimeout.isRunning()) {
         return false;
     }
     g_buttonTimeout.restart();
-    //process command
+    // process command
     if (g_relayTimeout.isRunning()) {
         g_relayTimeout.invalidate();
     } else {
         g_relayTimeout.restart();
     }
-    //handled something!
+    // handled something!
     return true;
 }
 
 bool handleDetectedMotion(void) {
     if (!g_bDetectedMotion) return false;
     g_bDetectedMotion = false;
-    //debouncing
+    // debouncing
     if (g_motionTimeout.isRunning()) {
         return false;
     }
     g_motionTimeout.restart();
-    //handled something!
+    // handled something!
     return true;
 }
 
@@ -150,38 +150,38 @@ ICACHE_RAM_ATTR void detectedMotion(void) {
 //////////////////////////////////////////////////////////////////////////////////
 
 void setup() {
-    //print startup config
+    // print startup config
     Serial.begin(115200);
     Serial.print(F("Startup "));
     Serial.print(g_config.getDeviceType());
     Serial.print(F(" "));
     Serial.println(g_config.getDeviceVersion());
-    //disconnect WiFi -> seams to help for bug that after upload wifi does not want to connect again...
+    // disconnect WiFi -> seams to help for bug that after upload wifi does not want to connect again...
     Serial.println(F("Disconnecting WIFI"));
     WiFi.disconnect();
-    //init pins
+    // init pins
     Serial.println(F("Setting up Beeper"));
     g_beeper.begin();
     Serial.println(F("Setting up Relay"));
     g_relay.begin();
     Serial.println(F("Setting up LED"));
     g_led.begin();
-    //setup temp sensor
+    // setup temp sensor
     Serial.println(F("Setting up temperature sensor"));
     if (!g_temperature.begin()) resetWithMessage("DS18B20 init failed, resetting");
     // configure MQTT
     Serial.println(F("Setting up MQTT"));
     if (!g_mqtt.begin()) resetWithMessage("MQTT allocation failed, resetting");
-    //setup SPIFFS
+    // setup SPIFFS
     Serial.println(F("Setting up SPIFFS"));
     if (!SPIFFS.begin()) resetWithMessage("SPIFFS initialization failed, resetting");
-    //setup the server
+    // setup the server
     Serial.println(F("Setting up web server"));
     g_webServer.begin();
-    //hookup switch
+    // hookup switch
     Serial.println(F("Hooking up the switch"));
     g_switch.attachInterrupt(pressedSwitch, FALLING);
-    //hookup motion detector
+    // hookup motion detector
     Serial.println(F("Hooking up the motion detector"));
     g_motion.begin();
     g_motion.attachInterrupt(detectedMotion, RISING);
@@ -194,42 +194,42 @@ void setup() {
 //////////////////////////////////////////////////////////////////////////////////
 
 void loop() {
-    //other loop functions
+    // other loop functions
     g_mqtt.loop();
     g_webServer.handleClient();
     ArduinoOTA.handle();
-    //isr handles & check if should do force publishing
+    // isr handles & check if should do force publishing
     bool bHandledMotion = handleDetectedMotion();
-    bool bHandledSwitch = handlePressedSwitch         ();
+    bool bHandledSwitch = handlePressedSwitch();
     if (bHandledSwitch) g_beeper.blink(true, 1, 150);
     bool bForcePublishing = bHandledMotion || bHandledSwitch;
-    //now we calculated if we should forcepublishing we also set motion to true if its still high...
+    // now we calculated if we should forcepublishing we also set motion to true if its still high...
     bHandledMotion = bHandledMotion || g_motion.isHigh();
-    //beep while motion detected
-    //g_beeper.digitalWrite(bHandledMotion);
-    //update relay
+    // beep while motion detected
+    // g_beeper.digitalWrite(bHandledMotion);
+    // update relay
     g_relay.digitalWrite(heatingAllowed());
-    //blink led if not connected
+    // blink led if not connected
     if (g_mqtt.isConnected()) {
-        //if allowed to heat
+        // if allowed to heat
         if (g_relayTimeout.isRunning()) {
-            //and we are actually heating
+            // and we are actually heating
             if (g_relay.isHigh()) {
                 g_led.on();
             }
-            //no not heating must be to warm...
+            // no not heating must be to warm...
             else {
                 g_led.fadeInOut();
             }
         }
-        //not allow to heat switch off led
+        // not allow to heat switch off led
         else {
             g_led.off();
         }
     } else {
         g_led.fastBlink();
     }
-    //my own processing
+    // my own processing
     if (g_sampler.isExpired(true) || bForcePublishing) {
         // load sensor values
         g_fTemperature = g_temperature.getTemp();
@@ -258,18 +258,18 @@ void loop() {
 //////////////////////////////////////////////////////////////////////////////////
 
 void onConnectionEstablished() {
-    //setup OTA
+    // setup OTA
     if (g_config.getOTAEnabled()) {
         configureOTA();
     } else {
         Serial.println("OTA is disabled");
     }
 
-    //publish values
+    // publish values
     g_mqtt.publishDeviceValues();
     g_mqtt.publishStatusValues(g_fTemperature, g_bDetectedMotion, g_bPressedSwitch, g_beeper.isHigh(), g_relayTimeout.isRunning(), g_relay.isHigh(), g_relayTimeout.timeLeftMs() / 1000);
 
-    //register for display
+    // register for display
     g_mqtt.subscribe(g_mqtt.topicForPath("subscribe/desired_temperature"), [](const String & payload) {
         g_config.setDesiredTemperature(payload.toFloat());
         g_config.commitToEEPROM();
@@ -277,16 +277,17 @@ void onConnectionEstablished() {
         g_mqtt.publishDeviceValues();
     });
 
-    //register for beeper
+    // register for beeper
     g_mqtt.subscribe(g_mqtt.topicForPath("subscribe/auto_switchoff_seconds"), [](const String & payload) {
         g_config.setAutoSwitchOffSeconds(payload.toInt());
-        g_relayTimeout.updateTimeoutAndRestart(g_config.getAutoSwitchOffSeconds()*1000);
+        g_relayTimeout.updateTimeoutAndRestart(g_config.getAutoSwitchOffSeconds() * 1000);
+        g_relayTimeout.invalidate();
         g_config.commitToEEPROM();
         g_beeper.blink(1, 1, 10);
         g_mqtt.publishDeviceValues();
     });
 
-    //register for enable switching on
+    // register for enable switching on
     g_mqtt.subscribe(g_mqtt.topicForPath("subscribe/output_toggle"), [](const String & payload) {
         pressedSwitch();
     });
